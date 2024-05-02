@@ -9,6 +9,10 @@
     justify-content: space-around;
 }
 
+.logo {
+    cursor: pointer;
+}
+
 .headbar-container {
     font-size: 30px;
     display: flex;

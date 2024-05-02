@@ -23,7 +23,7 @@
 .welcome-text {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    text-align: center;
     width: 100%;
     font-size: 200%;
     color: #FF9A3C;
@@ -70,21 +70,22 @@
     box-shadow: 0 0 5pt 2pt dimgray;
     outline-width: 0px;
 }
-.submit-container {
+.submit{
     display: flex;
     flex-direction: column;
-    margin-top: 64px;
+    margin-top: 48px;
     background-color: #FF9A3C;
     color: #fff;
     padding: 10px 50px;
     border-radius: 12px;
+    border: none;
     font-weight: 600;
     align-items: center;
     justify-content: center;
     cursor: pointer;
 }
 
-.submit-container:hover {
+.submit:hover {
     background-color: #fff;
     color: #FF9A3C;
 }

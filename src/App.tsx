@@ -34,9 +34,16 @@ export function App() {
   }, []);
   return (
     <div>
-      {!isAuthenticated && <Login/>}
-      {isAuthenticated && <Home/>}
-      {isAuthenticated && isAdmin && <Plans/>}
+      <Router>
+        <Routes>
+          <Route path='/' element={<Login />}/>
+          <Route path='/Home' element={<Home />}/>
+          <Route path='/Clients' element={<Clients />}/>
+          <Route path='/Plans' element={<Plans />}/>
+          <Route path='/Destinations' element={<Destinations />}/>
+          {!isAuthenticated && <Login />}
+        </Routes>
+      </Router>
     </div>
   );
 }
