@@ -1,0 +1,38 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 10vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #FF9A3C;
+  max-height: 50vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  top: 0;
+}
+
+.form-capsule {
+  background-color: #D9D9D9;
+  height: auto;
+  width: auto;
+}
+
+.App-body {
+  background-color: #FFC085;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(30px + 2vmin);
+  min-height: 90vh;
+}
+
+
