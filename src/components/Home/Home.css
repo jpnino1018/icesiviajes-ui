@@ -51,3 +51,7 @@
     color: #FF9A3C;
     font-weight: 700;
 }
+
+.logout {
+    cursor: pointer;
+}

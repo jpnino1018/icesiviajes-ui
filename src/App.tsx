@@ -36,14 +36,14 @@ export function App() {
     <div>
       <Router>
         <Routes>
-          <Route path='/' element={<Login />}/>
+          <Route path='/' element={isAuthenticated ? <Home/> : <Login />}/>
+          <Route path='/Login' element={<Login />}/>
           <Route path='/Home' element={<Home />}/>
           <Route path='/Clients' element={<Clients />}/>
           <Route path='/Plans' element={<Plans />}/>
           <Route path='/Destinations' element={<Destinations />}/>
-          {!isAuthenticated && <Login />}
         </Routes>
-      </Router>
+      </Router>
     </div>
   );
 }
