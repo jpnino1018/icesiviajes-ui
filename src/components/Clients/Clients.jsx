@@ -49,7 +49,7 @@ function Clients() {
         <div className='container'>
             <div className='welcome-text' id='clients-text'>Clientes</div>
             <Posts posts={currentPosts} loading={loading}/>
-            <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate}/>
+            <Pagination  postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate}/>
         </div>
     </div>
   )

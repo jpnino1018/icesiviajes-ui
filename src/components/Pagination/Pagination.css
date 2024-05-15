@@ -1,0 +1,24 @@
+.pagination {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: row;
+}
+
+.page-link {
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #007FDA;
+    color: #FFF;
+    margin: 10px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.page-link:hover {
+    background-color: #FFF;
+    color: #007FDA;
+}
+.page-link:visited {
+    display: flex;
+    text-decoration: none;
+}

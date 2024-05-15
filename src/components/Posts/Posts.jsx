@@ -5,13 +5,14 @@ import React from 'react'
         return <div> Loading... </div>
     }
   return (
-    <ul>
+    <div className='list-group'>
         {posts.map(post => (
-        <li key={post.id_clie} className='list-group-item'>
-            {post.name}
-        </li>
+        <div key={post.idClie} className='list-group-item'>
+            <div><span className='item-tag'>Nombre:</span>{post.name}</div>
+            <div><span className='item-tag'>Id:</span>{post.idClie}</div>
+        </div>
         ))}
-    </ul>
+    </div>
   )
 }
 
