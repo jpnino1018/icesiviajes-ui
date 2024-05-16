@@ -8,14 +8,14 @@ function Destinations() {
     <div className='page'>
         <div className='headbar'>
             <img onClick={() => {navigate('/Home')}} src={icesi_logo} className='logo'/>
-            <div className='headbar-container'>
-                <div className='clients' onClick={() => {navigate('/Clients')}}>Clientes</div>
+            <div className='headbar-container' onClick={() => {navigate('/Clients')}}>
+                <div className='clients'>Clientes</div>
             </div>
-            <div className='headbar-container'>
-                <div className='plans' onClick={() => {navigate('/Plans')}}>Planes</div>
+            <div className='headbar-container' onClick={() => {navigate('/Plans')}}>
+                <div className='plans'>Planes</div>
             </div>
-            <div className='headbar-container'>
-                <div className='destinations' onClick={() => {navigate('/Destinations')}}>Destinos</div>
+            <div className='headbar-container' onClick={() => {navigate('/Destinations')}}>
+                <div className='destinations'>Destinos</div>
             </div>
         </div>
         <div className='container'>
