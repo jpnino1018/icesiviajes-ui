@@ -26,6 +26,6 @@ export const request = (method, url, data) => {
       data: data});
 };
 
-axios.defaults.baseURL = 'http://localhost:3000/';
+axios.defaults.baseURL = 'http://localhost:9091/';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
