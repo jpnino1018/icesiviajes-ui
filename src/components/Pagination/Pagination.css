@@ -2,16 +2,26 @@
     margin-top: 12px;
     display: flex;
     flex-direction: row;
+    background-color: #007FDA;;
+    border-radius: 12px;
+}
+
+.page-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
 
 .page-link {
     padding-left: 10px;
     padding-right: 10px;
-    background-color: #007FDA;
+    background-color: lightskyblue;
     color: #FFF;
     margin: 10px;
     border-radius: 12px;
     cursor: pointer;
+    font-size: 12px;
 }
 
 .page-link:hover {

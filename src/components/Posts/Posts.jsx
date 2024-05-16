@@ -8,8 +8,8 @@ import React from 'react'
     <div className='list-group'>
         {posts.map(post => (
         <div key={post.idClie} className='list-group-item'>
-            <div><span className='item-tag'>Nombre:</span>{post.name}</div>
-            <div><span className='item-tag'>Id:</span>{post.idClie}</div>
+            <div><span className='item-tag'>Nombre</span>{post.name}</div>
+            <div><span className='item-tag'>ID</span>{post.idClie}</div>
         </div>
         ))}
     </div>
