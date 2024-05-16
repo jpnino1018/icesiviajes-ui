@@ -2,6 +2,7 @@ import './App.css';
 import Login from './components/Login/Login.tsx'
 import Home from './components/Home/Home.jsx'
 import Clients from './components/Clients/Clients.jsx'
+import CreateClient from './components/Clients/CreateClient.jsx';
 import Plans from './components/Plans/Plans.jsx'
 import Destinations from './components/Destinations/Destinations.jsx'
 import { useState, useEffect } from "react";
@@ -42,6 +43,8 @@ export function App() {
           <Route path='/Clients' element={<Clients />}/>
           <Route path='/Plans' element={<Plans />}/>
           <Route path='/Destinations' element={<Destinations />}/>
+          <Route path='/Clients/Create' element={<CreateClient />}/>
+
         </Routes>
       </Router>
     </div>

@@ -46,6 +46,9 @@ function Clients() {
                 <div className='destinations' onClick={() => {navigate('/Destinations')}}>Destinos</div>
             </div>
         </div>
+        <button onClick={() => {navigate('/Clients/Create')}} className="add-client-button">
+                    Agregar Cliente
+        </button>
         <div className='container'>
             <div className='welcome-text' id='clients-text'>Clientes</div>
             <Posts posts={currentPosts} loading={loading}/>
