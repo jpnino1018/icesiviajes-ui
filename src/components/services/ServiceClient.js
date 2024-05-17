@@ -13,7 +13,7 @@ class ServiceClient{
         
         
         return await axios.post('http://localhost:9091/api/v1/client/save',
-        {idClie: 34, identificationNumber: identificationNumber,firstLastName: firstLastName, secondLastName: secondLastName, name: name, phone1: phone1, phone2: "3133245676", email: email,gender: 'M', birthdate: birthdate, creationDate: creationDate, modificationDate: '', creatorUser: creatorUser, modifierUser: 'admin', status: 'A', idTiid:2 },
+        {idClie: 40, identificationNumber: identificationNumber,firstLastName: firstLastName, secondLastName: secondLastName, name: name, phone1: phone1, phone2: "3133245676", email: email,gender: 'M', birthdate: birthdate, creationDate: creationDate, modificationDate: '', creatorUser: creatorUser, modifierUser: 'admin', status: 'A', idTiid:2 },
         config)
     }
 
