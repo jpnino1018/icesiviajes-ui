@@ -7,6 +7,8 @@ import Posts from '../Posts/Posts.jsx'
 import Pagination from '../Pagination/Pagination.jsx';
 import { useState } from 'react';
 import Navbar from '../Navbar/Navbar.jsx'
+import { getAuthToken } from "../services/BackendService.tsx";
+
 
 function Clients() {
     let navigate = useNavigate();
@@ -18,8 +20,14 @@ function Clients() {
     useEffect(() => {
         const fetchPosts = async () => {
             setLoading(true)
-            console.log("Hello")
-            const res = await axios.get('http://localhost:9091/api/v1/client/all')
+
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${getAuthToken()}`
+                }
+            }
+
+            const res = await axios.get('http://localhost:9091/api/v1/client/all', config)
             setPosts(res.data)
             setLoading(false)
         }
