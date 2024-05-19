@@ -6,6 +6,8 @@ import axios from 'axios'
 import Posts from '../Posts/Posts.jsx'
 import Pagination from '../Pagination/Pagination.jsx';
 import { useState } from 'react';
+import Navbar from '../Navbar/Navbar.jsx'
+
 function Clients() {
     let navigate = useNavigate();
     const [posts, setPosts] = useState([])
@@ -34,18 +36,7 @@ function Clients() {
     const paginate = pageNumber => setCurrentPage(pageNumber)
   return (
     <div className='page'>
-        <div className='headbar'>
-            <img onClick={() => {navigate('/Home')}} src={icesi_logo} className='logo'/>
-            <div className='headbar-container' onClick={() => {navigate('/Clients')}}>
-                <div className='clients'>Clientes</div>
-            </div>
-            <div className='headbar-container' onClick={() => {navigate('/Plans')}}>
-                <div className='plans'>Planes</div>
-            </div>
-            <div className='headbar-container' onClick={() => {navigate('/Destinations')}}>
-                <div className='destinations'>Destinos</div>
-            </div>
-        </div>
+        <Navbar/>
         <button onClick={() => {navigate('/Clients/Create')}} className="add-client-button">
                     Agregar Cliente
         </button>

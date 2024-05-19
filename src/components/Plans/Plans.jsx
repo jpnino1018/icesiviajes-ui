@@ -2,22 +2,15 @@ import React from 'react'
 import './Plans.css'
 import icesi_logo from '../assets/logo.svg'
 import { useNavigate } from "react-router-dom";
+import Navbar from '../Navbar/Navbar';
 function Plans() {
     let navigate = useNavigate();
   return (
     <div className='page'>
-        <div className='headbar'>
-            <img onClick={() => {navigate('/Home')}} src={icesi_logo} className='logo'/>
-            <div className='headbar-container' onClick={() => {navigate('/Clients')}}>
-                <div className='clients'>Clientes</div>
-            </div>
-            <div className='headbar-container' onClick={() => {navigate('/Plans')}}>
-                <div className='plans'>Planes</div>
-            </div>
-            <div className='headbar-container' onClick={() => {navigate('/Destinations')}}>
-                <div className='destinations'>Destinos</div>
-            </div>
-        </div>
+        <Navbar></Navbar>
+        <button onClick={() => {navigate('/Plans/Create')}} className="add-plan-button">
+                    Agregar Plan
+        </button>
         <div className='container'>
             <div className='welcome-text'>Planes</div>
         </div>

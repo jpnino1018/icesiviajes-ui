@@ -11,6 +11,9 @@ import { CustomJwtPayload } from "./components/entity/CustomJwtPayload.tsx";
 import { getAuthToken } from "./components/services/BackendService.tsx";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React from 'react'
+import DestinationForm from './components/Destinations/DestinationForm.tsx';
+import PlanForm from './components/Plans/PlanForm.tsx';
+import ClientForm from './components/Clients/ClientForm.tsx';
 
 export function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -43,8 +46,9 @@ export function App() {
           <Route path='/Clients' element={<Clients />}/>
           <Route path='/Plans' element={<Plans />}/>
           <Route path='/Destinations' element={<Destinations />}/>
-          <Route path='/Clients/Create' element={<CreateClient />}/>
-
+          <Route path='/Clients/Create' element={<ClientForm/>}/>
+          <Route path='/Destinations/Create' element={<DestinationForm />}/>
+          <Route path='/Plans/Create' element={<PlanForm/>}/>
         </Routes>
       </Router>
     </div>
