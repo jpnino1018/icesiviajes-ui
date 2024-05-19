@@ -25,7 +25,7 @@ function Destinations() {
             }
         }
 
-          const res = await axios.get('http://localhost:9091/api/v1/plan/all', config)
+          const res = await axios.get('http://localhost:9091/api/v1/destination/all', config)
           setPosts(res.data)
           setLoading(false)
       }
@@ -37,7 +37,6 @@ function Destinations() {
     const indexOfFirstPost = indexOfLastPost - postsPerPage
     const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost)
     const paginate = pageNumber => setCurrentPage(pageNumber)
-
     return (
         <div className='page'>
             <Navbar></Navbar>
@@ -46,7 +45,7 @@ function Destinations() {
             </button>
             <div className='container'>
                 <div className='welcome-text'>Destinos</div>
-                <Posts posts={currentPosts} loading={loading}/>
+                <Posts posts={currentPosts} loading={loading} entityType="destination" idKey="idDest"/>
                 <Pagination  postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate}/>
             </div>
         </div>

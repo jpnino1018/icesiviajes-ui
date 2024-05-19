@@ -35,8 +35,6 @@ function Clients() {
         fetchPosts()
     }, [])
 
-    console.log(posts)
-
     const indexOfLastPost = currentPage * postsPerPage
     const indexOfFirstPost = indexOfLastPost - postsPerPage
     const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost)
@@ -50,7 +48,7 @@ function Clients() {
         </button>
         <div className='container'>
             <div className='welcome-text' id='clients-text'>Clientes</div>
-            <Posts posts={currentPosts} loading={loading}/>
+            <Posts posts={currentPosts} loading={loading} entityType="client" idKey="idClie"/>
             <Pagination  postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate}/>
         </div>
     </div>

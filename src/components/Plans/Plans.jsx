@@ -46,7 +46,7 @@ function Plans() {
         </button>
         <div className='container'>
             <div className='welcome-text'>Planes</div>
-            <Posts posts={currentPosts} loading={loading}/>
+            <Posts posts={currentPosts} loading={loading} entityType="plan" idKey="idPlan"/>
             <Pagination  postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate}/>
         </div>
     </div>
