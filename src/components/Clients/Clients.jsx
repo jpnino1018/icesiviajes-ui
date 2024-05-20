@@ -46,11 +46,11 @@ function Clients() {
                 <div className='destinations'>Destinos</div>
             </div>
         </div>
-        <button onClick={() => {navigate('/Clients/Create')}} className="add-client-button">
-                    Agregar Cliente
-        </button>
         <div className='container'>
             <div className='welcome-text' id='clients-text'>Clientes</div>
+            <button onClick={() => {navigate('/Clients/Create')}} className="add-client-button">
+                    Agregar Cliente
+            </button>
             <Posts posts={currentPosts} loading={loading}/>
             <Pagination  postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate}/>
         </div>
