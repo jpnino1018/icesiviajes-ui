@@ -4,6 +4,8 @@ import icesi_logo from '../assets/logo.svg';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import ServiceClient from '../services/ServiceClient';
+import Navbar from '../Navbar/Navbar.jsx'
+
 
 function CreateClient() {
     const navigate = useNavigate();
@@ -14,6 +16,7 @@ function CreateClient() {
         firstLastName: '',
         secondLastName: '',
         phone1: '',
+        phone2: '',
         email: '',
         gender: '',
         birthdate: ''
@@ -25,15 +28,7 @@ function CreateClient() {
             [e.target.name]: e.target.value
         });
     };
-    console.log(formData.idTiid)
-    console.log(formData.identificationNumber)
-    console.log(formData.name)
-    console.log(formData.firstLastName)
-    console.log(formData.secondLastName)
-    console.log(formData.phone1)
-    console.log(formData.email)
-    console.log(formData.gender)
-    console.log(formData.birthdate)
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -47,10 +42,10 @@ function CreateClient() {
             creatorUser
         };
         ServiceClient.createAClient(formData.idTiid,formData.identificationNumber,formData.name,formData.firstLastName,formData.secondLastName,
-            formData.phone1,formData.email,formData.gender,formData.birthdate,creationDate,creatorUser).then(
+            formData.phone1, formData.phone2, formData.email,formData.gender,formData.birthdate,creationDate,creatorUser).then(
                 (response) => {
     
-                    console.log('puto niño')
+                    console.log(response)
     
                 }).catch(
                 (error) => {
@@ -61,18 +56,7 @@ function CreateClient() {
 
     return (
         <div className='page'>
-            <div className='headbar'>
-                <img onClick={() => {navigate('/Home')}} src={icesi_logo} className='logo' alt="Logo" />
-                <div className='headbar-container'>
-                    <div className='clients' onClick={() => {navigate('/Clients')}}>Clientes</div>
-                </div>
-                <div className='headbar-container'>
-                    <div className='plans' onClick={() => {navigate('/Plans')}}>Planes</div>
-                </div>
-                <div className='headbar-container'>
-                    <div className='destinations' onClick={() => {navigate('/Destinations')}}>Destinos</div>
-                </div>
-            </div>
+            <Navbar></Navbar>
             
             <div className='container'>
                 <div className='welcome-text' id='clients-text'>Formulario</div>
@@ -97,8 +81,11 @@ function CreateClient() {
                     <label htmlFor="secondLastName">Segundo Apellido:</label><br />
                     <input type="text" id="secondLastName" name="secondLastName" value={formData.secondLastName} onChange={handleChange} required />
                     <br />
-                    <label htmlFor="phone1">Teléfono:</label><br />
+                    <label htmlFor="phone1">Teléfono 1:</label><br />
                     <input type="text" id="phone1" name="phone1" value={formData.phone1} onChange={handleChange} required />
+                    <br />
+                    <label htmlFor="phone1">Teléfono 2(opcional):</label><br />
+                    <input type="text" id="phone2" name="phone2" value={formData.phone2} onChange={handleChange} />
                     <br />
                     <label htmlFor="email">Correo Electrónico:</label><br />
                     <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />

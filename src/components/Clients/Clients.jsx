@@ -6,6 +6,10 @@ import axios from 'axios'
 import Posts from '../Posts/Posts.jsx'
 import Pagination from '../Pagination/Pagination.jsx';
 import { useState } from 'react';
+import Navbar from '../Navbar/Navbar.jsx'
+import { getAuthToken } from "../services/BackendService.tsx";
+
+
 function Clients() {
     let navigate = useNavigate();
     const [posts, setPosts] = useState([])
@@ -16,16 +20,20 @@ function Clients() {
     useEffect(() => {
         const fetchPosts = async () => {
             setLoading(true)
-            console.log("Hello")
-            const res = await axios.get('http://localhost:9091/api/v1/client/all')
+
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${getAuthToken()}`
+                }
+            }
+
+            const res = await axios.get('http://localhost:9091/api/v1/client/all', config)
             setPosts(res.data)
             setLoading(false)
         }
 
         fetchPosts()
     }, [])
-
-    console.log(posts)
 
     const indexOfLastPost = currentPage * postsPerPage
     const indexOfFirstPost = indexOfLastPost - postsPerPage
@@ -34,24 +42,13 @@ function Clients() {
     const paginate = pageNumber => setCurrentPage(pageNumber)
   return (
     <div className='page'>
-        <div className='headbar'>
-            <img onClick={() => {navigate('/Home')}} src={icesi_logo} className='logo'/>
-            <div className='headbar-container' onClick={() => {navigate('/Clients')}}>
-                <div className='clients'>Clientes</div>
-            </div>
-            <div className='headbar-container' onClick={() => {navigate('/Plans')}}>
-                <div className='plans'>Planes</div>
-            </div>
-            <div className='headbar-container' onClick={() => {navigate('/Destinations')}}>
-                <div className='destinations'>Destinos</div>
-            </div>
-        </div>
+        <Navbar/>
+        <button onClick={() => {navigate('/Clients/Create')}} className="add-client-button">
+                    Agregar Cliente
+        </button>
         <div className='container'>
             <div className='welcome-text' id='clients-text'>Clientes</div>
-            <button onClick={() => {navigate('/Clients/Create')}} className="add-client-button">
-                    Agregar Cliente
-            </button>
-            <Posts posts={currentPosts} loading={loading}/>
+            <Posts posts={currentPosts} loading={loading} entityType="client" idKey="idClie"/>
             <Pagination  postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate}/>
         </div>
     </div>
