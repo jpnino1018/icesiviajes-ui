@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import './Clients.css';
-import icesi_logo from '../assets/logo.svg';
+import '../MainContainer/MainContainer.css'
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import ServiceClient from '../services/ServiceClient';
 import Navbar from '../Navbar/Navbar.jsx'
+
 
 
 function CreateClient() {
@@ -57,7 +57,6 @@ function CreateClient() {
     return (
         <div className='page'>
             <Navbar></Navbar>
-            
             <div className='container'>
                 <div className='welcome-text' id='clients-text'>Formulario</div>
                 <form onSubmit={handleSubmit}>

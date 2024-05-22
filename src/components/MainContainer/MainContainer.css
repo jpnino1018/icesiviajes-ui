@@ -1,0 +1,43 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 1000px;
+    background-color: #FFF;
+    margin-top: 25px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    font-size: 200%;
+    align-items: center;
+    border-radius: 12px;
+}
+
+.welcome-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    font-size: 200%;
+    color: black;
+    font-weight: 800;
+}
+
+
+.add-btn {
+    display: flex;
+    fill: #FFF;
+    background-color: black;
+    align-items: center;
+    font-weight: 600;
+    border-radius: 50%;
+    border-width: 5px;
+    cursor: pointer;
+    box-shadow: none;
+    height: 50px;
+    width: 50px;
+    padding: 10px;
+}
+
+.add-btn:hover {
+    background-color: #007FDA;
+    transition: 0.3s;
+}

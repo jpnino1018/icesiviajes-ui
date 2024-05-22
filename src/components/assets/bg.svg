@@ -1,7 +1,9 @@
 <svg width="880" height="589" viewBox="0 0 880 589" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g style="mix-blend-mode:luminosity">
 <rect width="880" height="589" fill="url(#pattern0_101_6)"/>
+</g>
 <g style="mix-blend-mode:multiply">
-<rect width="880" height="589" fill="#FF9A3C"/>
+<rect width="880" height="589" fill="#007FDA"/>
 </g>
 <defs>
 <pattern id="pattern0_101_6" patternContentUnits="objectBoundingBox" width="1" height="1">

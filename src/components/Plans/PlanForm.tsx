@@ -41,56 +41,58 @@ const PlanForm = () => {
     <div className='page'>
       <Navbar></Navbar>
       <div className='container'>
-        <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
+      <div className='welcome-text' id='clients-text'>Crear Plan</div>
+        <form className='create-form' onSubmit={handleSubmit(onSubmit)}>
+        <div className='form-row'>
             <label htmlFor="code">Código:</label>
             <input id="code" {...register("code", { required: true })} />
             {errors.code && <span>Este campo es obligatorio</span>}
         </div>
 
-        <div>
+        <div className='form-row'>
             <label htmlFor="requestDescription">Descripción de la solicitud:</label>
             <input id="requestDescription" {...register("requestDescription", { required: true })} />
             {errors.requestDescription && <span>Este campo es obligatorio</span>}
         </div>
 
-        <div>
+        <div className='form-row'>
             <label htmlFor="name">Nombre:</label>
             <input id="name" {...register("name", { required: true })} />
             {errors.name && <span>Este campo es obligatorio</span>}
         </div>
 
-        <div>
+        <div className='form-row'>
             <label htmlFor="personCount">Número de personas:</label>
             <input id="personCount" type="number" {...register("personCount", { required: true, min: 1 })} />
             {errors.personCount && <span>Este campo es obligatorio y debe ser al menos 1</span>}
         </div>
 
-        <div>
+        <div className='form-row'>
             <label htmlFor="requestDate">Fecha de solicitud:</label>
             <input id="requestDate" type="date" {...register("requestDate", { required: true })} />
             {errors.requestDate && <span>Este campo es obligatorio</span>}
         </div>
 
-        <div>
+        <div className='form-row'>
             <label htmlFor="startTravelDate">Fecha de inicio del viaje:</label>
             <input id="startTravelDate" type="date" {...register("startTravelDate", { required: true })} />
             {errors.startTravelDate && <span>Este campo es obligatorio</span>}
         </div>
 
-        <div>
+        <div className='form-row'>
             <label htmlFor="endTravelDate">Fecha de fin del viaje:</label>
             <input id="endTravelDate" type="date" {...register("endTravelDate", { required: true })} />
             {errors.endTravelDate && <span>Este campo es obligatorio</span>}
         </div>
 
-        <div>
+        <div className='form-row'>
             <label htmlFor="totalValue">Valor total:</label>
             <input id="totalValue" type="number" step="0.01" {...register("totalValue", { required: true, min: 0 })} />
             {errors.totalValue && <span>Este campo es obligatorio y debe ser un número positivo</span>}
         </div>
-
-        <button type="submit">Enviar</button>
+        <div className='btn-container'>
+        <button className='send-form-btn' type="submit">Enviar</button>
+        </div>
         </form>
       </div>
     </div>

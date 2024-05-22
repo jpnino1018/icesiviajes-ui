@@ -1,9 +1,9 @@
 import React from 'react'
-import './Login.css'
+import { ReactComponent as MySVG } from '../assets/logo.svg';
 import { setAuthHeader } from "../services/BackendService.tsx"
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-
+import './Login.css'
 function Login() {
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
@@ -20,7 +20,7 @@ function Login() {
                 return response.json();
 
             } else {
-                document.getElementById("welcome")!.textContent="Credenciales Erroneas";
+                document.getElementById("message")!.textContent="Credenciales Erroneas";
                 return null
             }
         }).then(data => {
@@ -34,9 +34,11 @@ function Login() {
   return (
     <div className='page'>
         <div className='headbar'>
+            <MySVG/>
         </div>
-        <div className='container'>
+        <div className='login-container'>
             <div className='welcome-text' id='welcome'>Bienvenido</div>
+            <div className='login-message' id='message'></div>
             <form className='input-field' onSubmit={onSubmit}>
                 <div className='input'>
                     <label className='label'>Usuario</label>

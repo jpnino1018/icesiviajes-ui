@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import './Plans.css'
+import '../MainContainer/MainContainer.css'
 import { useNavigate } from "react-router-dom";
 import Navbar from '../Navbar/Navbar';
 import { useState } from 'react';
@@ -41,11 +41,9 @@ function Plans() {
   return (
     <div className='page'>
         <Navbar></Navbar>
-        <button onClick={() => {navigate('/Plans/Create')}} className="add-plan-button">
-                    Agregar Plan
-        </button>
         <div className='container'>
             <div className='welcome-text'>Planes</div>
+            <svg onClick={() => {navigate('/Plans/Create')}} className="add-btn" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFF"><path d="M120-120v-80h720v80H120Zm74-200L80-514l62-12 70 62 192-52-162-274 78-24 274 246 200-54q32-9 58 12t26 56q0 22-13.5 39T830-492L194-320Z"/></svg>
             <Posts posts={currentPosts} loading={loading} entityType="plan" idKey="idPlan"/>
             <Pagination  postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate}/>
         </div>

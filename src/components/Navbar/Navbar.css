@@ -2,7 +2,7 @@
     height: auto;
     width: 100%;
     padding: 10px 0;
-    background-color: #FF9A3C;
+    background-color: black;
     text-align: center;
     display: flex;
     flex-direction: row;
@@ -17,12 +17,23 @@
     font-size: 30px;
     display: flex;
     flex-direction: column;
-    background-color: #FFC085;
-    color: #fff;
+    background-color: white;
+    color: black;
     padding: 10px 50px;
     border-radius: 12px;
     font-weight: 600;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+}
+
+.headbar-container:hover {
+    background-color: #007FDA;
+    color: #FFF;
+    transition: 0.3s;
+}
+
+.logout {
+    cursor: pointer;
+    width: 30px;
 }
