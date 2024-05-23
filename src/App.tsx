@@ -2,7 +2,6 @@ import './App.css';
 import Login from './components/Login/Login.tsx'
 import Home from './components/Home/Home.jsx'
 import Clients from './components/Clients/Clients.jsx'
-import CreateClient from './components/Clients/CreateClient.jsx';
 import Plans from './components/Plans/Plans.jsx'
 import Destinations from './components/Destinations/Destinations.jsx'
 import { useState, useEffect } from "react";
@@ -14,6 +13,7 @@ import React from 'react'
 import DestinationForm from './components/Destinations/DestinationForm.tsx';
 import PlanForm from './components/Plans/PlanForm.tsx';
 import ClientForm from './components/Clients/ClientForm.tsx';
+import ClientEdit from './components/Clients/ClientEdit.tsx';
 
 export function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -47,6 +47,7 @@ export function App() {
           <Route path='/Plans' element={<Plans />}/>
           <Route path='/Destinations' element={<Destinations />}/>
           <Route path='/Clients/Create' element={<ClientForm/>}/>
+          <Route path='/Clients/Edit/:id' element={<ClientEdit />}/>
           <Route path='/Destinations/Create' element={<DestinationForm />}/>
           <Route path='/Plans/Create' element={<PlanForm/>}/>
         </Routes>
