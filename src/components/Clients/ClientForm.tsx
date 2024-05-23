@@ -49,15 +49,9 @@ const ClientForm = () => {
           </div>
 
           <div className='form-row'>
-              <label htmlFor="firstLastName">Primer Apellido:</label>
-              <input id="firstLastName" {...register("firstLastName", { required: true })} />
+              <label htmlFor="lastName">Apellido:</label>
+              <input id="lastName" {...register("lastName", { required: true })} />
               {errors.firstLastName && <span>Este campo es obligatorio</span>}
-          </div>
-
-          <div className='form-row'>
-              <label htmlFor="secondLastName">Segundo Apellido:</label>
-              <input id="secondLastName" {...register("secondLastName", { required: true })} />
-              {errors.secondLastName && <span>Este campo es obligatorio</span>}
           </div>
 
           <div className='form-row'>
@@ -67,15 +61,9 @@ const ClientForm = () => {
           </div>
 
           <div className='form-row'>
-              <label htmlFor="phone1">Teléfono 1:</label>
-              <input id="phone1" {...register("phone1", { required: true })} />
-              {errors.phone1 && <span>Este campo es obligatorio</span>}
-          </div>
-
-          <div className='form-row'>
-              <label htmlFor="phone2">Teléfono 2:</label>
-              <input id="phone2" {...register("phone2")} />
-              {errors.phone2 && <span>Este campo es opcional</span>}
+              <label htmlFor="phone">Teléfono:</label>
+              <input id="phone" {...register("phone", { required: true })} />
+              {errors.phone && <span>Este campo es obligatorio</span>}
           </div>
 
           <div className='form-row'>

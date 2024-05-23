@@ -1,3 +1,25 @@
+/* width */
+::-webkit-scrollbar {
+    height: 5px;
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    visibility: hidden;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 6px; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
 .loading {
     margin-top: 30px;
     font-weight: 600;
@@ -9,7 +31,7 @@
     flex-direction: column;
     padding: 10px;
     background-color:lightgray;
-    width: 90%;
+    width: 95%;
     border-radius: 12px;
     height: fit-content;
     justify-content: space-evenly;
@@ -25,38 +47,78 @@
     margin-bottom: 5px;
     background-color: #007FDA;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     font-size: 40%;
     border-radius: 6px;
+    box-shadow: 0 5pt 2pt -2pt dimgray;
 }
 
 .headers {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     font-size: 80%;
-    padding-right: 60px;
+    padding-right: 102px;
 }
 
-td {
+.headers th {
+    flex: 1;
+    margin: 0 5px;
+}
+
+.list-group-item td {
     font-weight: 500;
-    width: 150px;
+    overflow-x: auto;
+    text-align: center;
+    max-height: 100%;
+    padding: 0;
+    margin: 0 5px;
+    flex: 1;
+
 }
 
+.row-buttons {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.checkBtn {
+    height: 100%;
+    color: #FFF;
+    background-color: black;
+    border: none;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    cursor: pointer;
+    padding: 0 5px;
+}
+.checkBtn:hover {
+    background-color: #FFF;
+    fill: black;
+}
 .editBtn {
     height: 100%;
     color: #FFF;
     background-color: black;
     border: none;
-    border-radius: 6px;
     cursor: pointer;
+    padding: 0 5px;
 }
-
+.editBtn:hover {
+    background-color: #FFF;
+    fill: black;
+}
 .deleteBtn {
     height: 100%;
     color: #FFF;
     background-color: red;
     border: none;
-    border-radius: 6px;
     cursor: pointer;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    padding: 0 5px;
+}
+.deleteBtn:hover {
+    background-color: #FFF;
+    fill: red;
 }
