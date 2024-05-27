@@ -47,7 +47,7 @@ export function App() {
           <Route path='/Plans' element={<Plans />}/>
           <Route path='/Destinations' element={<Destinations />}/>
           <Route path='/Clients/Create' element={<ClientForm/>}/>
-          <Route path='/Clients/Edit/:id' element={<ClientEdit />}/>
+          <Route path='/Clients/Edit/' element={<ClientEdit />}/>
           <Route path='/Destinations/Create' element={<DestinationForm />}/>
           <Route path='/Plans/Create' element={<PlanForm/>}/>
         </Routes>
