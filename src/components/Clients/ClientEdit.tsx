@@ -57,7 +57,7 @@ const onSubmit: SubmitHandler<any> = async (data) => {
     console.log('Datos enviados correctamente:', response.data);
   } catch (error) {
     console.error('Error al enviar los datos:', error);
-    console.log(dataWithDefaults)
+    console.log('Error al enviar los datos:', dataWithDefaults)
   }
 };
 
