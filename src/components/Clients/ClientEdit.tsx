@@ -47,7 +47,7 @@ const onSubmit: SubmitHandler<any> = async (data) => {
   const dataWithDefaults = {
     idClie: clientObj.idClie,
     ...data,
-    birdthdate: clientObj.birthdate,
+    birthdate: clientObj.birthdate,
     status: clientObj.status,
     idTiid: clientObj.idTiid
   };
