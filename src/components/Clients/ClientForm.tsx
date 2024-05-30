@@ -20,10 +20,6 @@ const ClientForm = () => {
         const dataWithDefaults = {
           idClie: -1,
           ...data,
-          creationDate: new Date().toISOString(),
-          modificationDate: '',
-          creatorUser: 'admin',
-          modifierUser: '',
           status: 'A',
           idTiid: -1
         };

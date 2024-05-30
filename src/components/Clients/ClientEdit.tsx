@@ -46,12 +46,7 @@ const onSubmit: SubmitHandler<any> = async (data) => {
 
   const dataWithDefaults = {
     idClie: clientObj.idClie,
-    identificationNumber: formData.identificationNumber,
-    lastName: formData.lastName,
-    name: formData.name,
-    phone1: formData.phone1,
-    email: formData.email,
-    gender: formData.gender,
+    ...data,
     birdthdate: clientObj.birthdate,
     status: clientObj.status,
     idTiid: clientObj.idTiid
@@ -71,38 +66,38 @@ const onSubmit: SubmitHandler<any> = async (data) => {
       <Navbar />
       <div className='container'>
         <div className='welcome-text'>Editar Cliente</div>
-        <form className='create-form' onSubmit={(handleSubmit(onSubmit))}>
+        <form className='create-form' onSubmit={handleSubmit(onSubmit)}>
           <div className='form-row'>
               <label htmlFor="identificationNumber">Número de Identificación:</label>
-              <input id="identificationNumber" name="identificationNumber" value={formData.identificationNumber} onChange={handleChange}/>
+              <input id="identificationNumber" {...register("identificationNumber", { required: true })} value={formData.identificationNumber} onChange={handleChange} />
           </div>
 
           <div className='form-row'>
               <label htmlFor="lastName">Apellido:</label>
-              <input id="lastName" name="firstLastName" value={formData.astName} onChange={handleChange}/>
+              <input id="lastName" {...register("lastName", { required: true })} value={formData.lastName} onChange={handleChange}/>
               
           </div>
           <div className='form-row'>
               <label htmlFor="name">Nombre:</label>
-              <input id="name" name="name" value={formData.name} onChange={handleChange}/>
+              <input id="name" {...register("name", { required: true })} value={formData.name} onChange={handleChange}/>
               
           </div>
 
           <div className='form-row'>
-              <label htmlFor="phone">Teléfono:</label>
-              <input id="phone" name="phone1" value={formData.phone1} onChange={handleChange} />
+              <label htmlFor="phone1">Teléfono:</label>
+              <input id="phone1" {...register("phone1", { required: true })} value={formData.phone1} onChange={handleChange} />
               
           </div>
 
           <div className='form-row'>
               <label htmlFor="email">Correo Electrónico:</label>
-              <input id="email" type="email"name="email" value={formData.email} onChange={handleChange} />
+              <input id="email" type="email" {...register("email", { required: true })} value={formData.email} onChange={handleChange} />
               
           </div>
 
           <div className='form-row'>
               <label htmlFor="gender">Género:</label>
-              <select id="gender" name="gender" value={formData.gender} onChange={handleChange}>
+              <select id="gender" {...register("gender", { required: true })} value={formData.gender} onChange={handleChange}>
                 <option value="M">Masculino</option>
                 <option value="F">Femenino</option>
                 <option value="O">Otro</option>
