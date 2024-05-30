@@ -31,6 +31,7 @@ const ClientForm = () => {
         try {
           const response = await axios.post('http://localhost:9091/api/v1/client/save', dataWithDefaults, config);
           console.log('Datos enviados correctamente:', response.data);
+          alert(`Cliente ${response.data.name} creado exitosamente!`)
         } catch (error) {
           console.error('Error al enviar los datos:', error);
         }
@@ -61,8 +62,8 @@ const ClientForm = () => {
           </div>
 
           <div className='form-row'>
-              <label htmlFor="phone">Teléfono:</label>
-              <input id="phone" {...register("phone", { required: true })} />
+              <label htmlFor="phone1">Teléfono:</label>
+              <input id="phone1" {...register("phone1", { required: true })} />
               {errors.phone && <span>Este campo es obligatorio</span>}
           </div>
 

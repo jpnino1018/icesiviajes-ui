@@ -20,8 +20,7 @@ const ClientEdit = () => {
     idTiid: clientObj.idTiid,
     identificationNumber: clientObj.identificationNumber,
     name: clientObj.name,
-    firstLastName: clientObj.lastName,
-    secondLastName: '',
+    lastName: clientObj.lastName,
     phone1: clientObj.phone1,
     phone2: '',
     email: clientObj.email,
@@ -47,20 +46,23 @@ const onSubmit: SubmitHandler<any> = async (data) => {
 
   const dataWithDefaults = {
     idClie: clientObj.idClie,
-    ...data,
-    creationDate: new Date().toISOString(),
-    modificationDate: '',
-    creatorUser: 'admin',
-    modifierUser: '',
-    status: 'A',
+    identificationNumber: formData.identificationNumber,
+    lastName: formData.lastName,
+    name: formData.name,
+    phone1: formData.phone1,
+    email: formData.email,
+    gender: formData.gender,
+    birdthdate: clientObj.birthdate,
+    status: clientObj.status,
     idTiid: clientObj.idTiid
   };
 
   try {
-    const response = await axios.post('http://localhost:9091/api/v1/client/update', dataWithDefaults, config);
+    const response = await axios.put('http://localhost:9091/api/v1/client/update', dataWithDefaults, config);
     console.log('Datos enviados correctamente:', response.data);
   } catch (error) {
     console.error('Error al enviar los datos:', error);
+    console.log(dataWithDefaults)
   }
 };
 
@@ -77,7 +79,7 @@ const onSubmit: SubmitHandler<any> = async (data) => {
 
           <div className='form-row'>
               <label htmlFor="lastName">Apellido:</label>
-              <input id="lastName" name="firstLastName" value={formData.firstLastName} onChange={handleChange}/>
+              <input id="lastName" name="firstLastName" value={formData.astName} onChange={handleChange}/>
               
           </div>
           <div className='form-row'>
@@ -107,11 +109,6 @@ const onSubmit: SubmitHandler<any> = async (data) => {
               </select>
               
           </div>
-
-          <div className='form-row'>
-              <label htmlFor="birthdate">Fecha de Nacimiento:</label>
-              <input id="birthdate" type="date" name="birthdate" value={formData.birthdate} onChange={handleChange} />
-              </div>
           <div className='btn-container'>
             <button className='send-form-btn' type="submit">Actualizar</button>
           </div>
