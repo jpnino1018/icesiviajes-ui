@@ -1,89 +1,117 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import axios from 'axios';
-import { useForm } from 'react-hook-form';
 import Navbar from '../Navbar/Navbar';
 import { getAuthToken } from "../services/BackendService.tsx";
+import ServiceClient from '../services/ServiceClient';
+import { useForm, SubmitHandler } from 'react-hook-form';
+
+
 
 
 
 const ClientEdit = () => {
-  const { id } = useParams();
-  const [clientData, setClientData] = useState({});
   const location = useLocation();
   let clientObj = location.state.clientInfo;
-  const { register, handleSubmit, setValue, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm<any>();
 
-  useEffect(() => {
 
-    const fetchClient = async () => {
+  const [formData, setFormData] = useState({
+    idTiid: clientObj.idTiid,
+    identificationNumber: clientObj.identificationNumber,
+    name: clientObj.name,
+    firstLastName: clientObj.lastName,
+    secondLastName: '',
+    phone1: clientObj.phone1,
+    phone2: '',
+    email: clientObj.email,
+    gender: clientObj.gender,
+    birthdate: clientObj.birthdate
+});
 
-      const config = {
-        headers: {
-            Authorization: `Bearer ${getAuthToken()}`
-        }
+const handleChange = (e) => {
+    setFormData({
+        ...formData,
+        [e.target.name]: e.target.value
+    });
+};
+
+
+const onSubmit: SubmitHandler<any> = async (data) => {
+        
+  const config = {
+      headers: {
+          Authorization: `Bearer ${getAuthToken()}`
       }
-    };
+  }
 
-    fetchClient();
-  }, [id, setValue]);
-
-  const onSubmit = data => {
-    console.log(data);
-    // Aquí iría la lógica para enviar los datos actualizados al servidor
+  const dataWithDefaults = {
+    idClie: clientObj.idClie,
+    ...data,
+    creationDate: new Date().toISOString(),
+    modificationDate: '',
+    creatorUser: 'admin',
+    modifierUser: '',
+    status: 'A',
+    idTiid: clientObj.idTiid
   };
+
+  try {
+    const response = await axios.post('http://localhost:9091/api/v1/client/update', dataWithDefaults, config);
+    console.log('Datos enviados correctamente:', response.data);
+  } catch (error) {
+    console.error('Error al enviar los datos:', error);
+  }
+};
 
   return (
     <div className='page'>
       <Navbar />
       <div className='container'>
         <div className='welcome-text'>Editar Cliente</div>
-        <form className='create-form' onSubmit={handleSubmit(onSubmit)}>
+        <form className='create-form' onSubmit={(handleSubmit(onSubmit))}>
           <div className='form-row'>
               <label htmlFor="identificationNumber">Número de Identificación:</label>
-              <input id="identificationNumber" value={clientObj.identificationNumber} />
-              {errors.identificationNumber && <span>Este campo es obligatorio</span>}
+              <input id="identificationNumber" name="identificationNumber" value={formData.identificationNumber} onChange={handleChange}/>
           </div>
 
           <div className='form-row'>
               <label htmlFor="lastName">Apellido:</label>
-              <input id="lastName" value={clientObj.lastName} />
-              {errors.lastName && <span>Este campo es obligatorio</span>}
+              <input id="lastName" name="firstLastName" value={formData.firstLastName} onChange={handleChange}/>
+              
           </div>
-
           <div className='form-row'>
               <label htmlFor="name">Nombre:</label>
-              <input id="name" value={clientObj.name}/>
-              {errors.name && <span>Este campo es obligatorio</span>}
+              <input id="name" name="name" value={formData.name} onChange={handleChange}/>
+              
           </div>
 
           <div className='form-row'>
               <label htmlFor="phone">Teléfono:</label>
-              <input id="phone" value={clientObj.phone1} />
-              {errors.phone && <span>Este campo es obligatorio</span>}
+              <input id="phone" name="phone1" value={formData.phone1} onChange={handleChange} />
+              
           </div>
 
           <div className='form-row'>
               <label htmlFor="email">Correo Electrónico:</label>
-              <input id="email" type="email"value={clientObj.email} />
-              {errors.email && <span>Este campo es obligatorio y debe ser un correo válido</span>}
+              <input id="email" type="email"name="email" value={formData.email} onChange={handleChange} />
+              
           </div>
 
           <div className='form-row'>
               <label htmlFor="gender">Género:</label>
-              <select id="gender" value={clientObj.gender}>
+              <select id="gender" name="gender" value={formData.gender} onChange={handleChange}>
                 <option value="M">Masculino</option>
                 <option value="F">Femenino</option>
                 <option value="O">Otro</option>
               </select>
-              {errors.gender && <span>Este campo es obligatorio</span>}
+              
           </div>
 
           <div className='form-row'>
               <label htmlFor="birthdate">Fecha de Nacimiento:</label>
-              <input id="birthdate" type="date" value={clientObj.birthdate} />
-              {errors.birthdate && <span>Este campo es obligatorio</span>}
-          </div>
+              <input id="birthdate" type="date" name="birthdate" value={formData.birthdate} onChange={handleChange} />
+              </div>
           <div className='btn-container'>
             <button className='send-form-btn' type="submit">Actualizar</button>
           </div>
