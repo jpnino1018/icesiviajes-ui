@@ -26,7 +26,7 @@ const PlanForm = () => {
           modifierUser: '',
           status: 'A',
           idClie: -1,
-          idUser: -1
+          icUser: -1
         };
         
     

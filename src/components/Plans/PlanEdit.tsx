@@ -46,6 +46,9 @@ const onSubmit: SubmitHandler<any> = async (data) => {
   const dataWithDefaults = {
     idPlan: planObj.idPlan,
     ...data,
+    requestDate: planObj.requestDate,
+    startTravelDate: planObj.startTravelDate,
+    endTravelDate: planObj.endTravelDate,
     creationDate: planObj.creationDate,
     modificationDate: new Date().toISOString(),
     creatorUser: planObj.creatorUser,
@@ -71,7 +74,7 @@ return (
 <div className='page'>
 <Navbar></Navbar>
 <div className='container'>
-<div className='welcome-text' id='clients-text'>Crear Plan</div>
+<div className='welcome-text' id='clients-text'>Editar Plan</div>
   <form className='create-form' onSubmit={handleSubmit(onSubmit)}>
   <div className='form-row'>
       <label htmlFor="code">Código:</label>
@@ -95,24 +98,6 @@ return (
       <label htmlFor="personCount">Número de personas:</label>
       <input id="personCount" type="number" {...register("personCount", { required: true, min: 1 })} value={formData.personCount} onChange={handleChange} />
       {errors.personCount && <span>Este campo es obligatorio y debe ser al menos 1</span>}
-  </div>
-
-  <div className='form-row'>
-      <label htmlFor="requestDate">Fecha de solicitud:</label>
-      <input id="requestDate" type="date" {...register("requestDate", { required: true })} value={formData.requestDate} onChange={handleChange} />
-      {errors.requestDate && <span>Este campo es obligatorio</span>}
-  </div>
-
-  <div className='form-row'>
-      <label htmlFor="startTravelDate">Fecha de inicio del viaje:</label>
-      <input id="startTravelDate" type="date" {...register("startTravelDate", { required: true })} value={formData.startTravelDate} onChange={handleChange} />
-      {errors.startTravelDate && <span>Este campo es obligatorio</span>}
-  </div>
-
-  <div className='form-row'>
-      <label htmlFor="endTravelDate">Fecha de fin del viaje:</label>
-      <input id="endTravelDate" type="date" {...register("endTravelDate", { required: true })} value={formData.endTravelDate} onChange={handleChange} />
-      {errors.endTravelDate && <span>Este campo es obligatorio</span>}
   </div>
 
   <div className='form-row'>
