@@ -5,10 +5,12 @@ import Navbar from '../Navbar/Navbar';
 import { getAuthToken } from "../services/BackendService.tsx";
 import ServiceClient from '../services/ServiceClient';
 import { useForm, SubmitHandler } from 'react-hook-form';
-
+import { useNavigate } from "react-router-dom";
 
 const PlanEdit = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+
   let planObj = location.state.planInfo;
   const { register, handleSubmit, formState: { errors } } = useForm<any>();
 
@@ -42,21 +44,22 @@ const onSubmit: SubmitHandler<any> = async (data) => {
   }
 
   const dataWithDefaults = {
-    idPlan: -1,
+    idPlan: planObj.idPlan,
     ...data,
-    creationDate: new Date().toISOString(),
-    modificationDate: '',
-    creatorUser: 'admin',
-    modifierUser: '',
-    status: 'A',
-    idClie: -1,
-    idUser: -1
+    creationDate: planObj.creationDate,
+    modificationDate: new Date().toISOString(),
+    creatorUser: planObj.creatorUser,
+    modifierUser: 'admin',
+    status: planObj.status,
+    idClie: planObj.idClie,
+    idUser: planObj.idUser
   };
   
 
   try {
     const response = await axios.put('http://localhost:9091/api/v1/plan/update', dataWithDefaults, config);
-    console.log('Datos enviados correctamente:', response.data);
+    alert(`Plan ${response.data.name} editado exitosamente!`)
+    navigate('/Plans')
   } catch (error) {
     console.error('Error al enviar los datos:', error);
     console.log('Error al enviar los datos:', dataWithDefaults)

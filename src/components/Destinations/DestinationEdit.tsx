@@ -4,9 +4,12 @@ import axios from 'axios';
 import Navbar from '../Navbar/Navbar';
 import { getAuthToken } from "../services/BackendService.tsx";
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { useNavigate } from "react-router-dom";
 
 const DestinationEdit = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+
   let destinationObj = location.state.destinationInfo;
   const { register, handleSubmit, formState: { errors } } = useForm<any>();
 
@@ -38,19 +41,20 @@ const onSubmit: SubmitHandler<any> = async (data) => {
   }
 
   const dataWithDefaults = {
-    idDest: -1,
+    idDest: destinationObj.idDest,
     ...data,
-    creationDate: new Date().toISOString(),
-    modificationDate: '',
-    creatorUser: 'admin',
-    modifierUser: '',
-    status: 'A',
-    idTide: -1,
+    creationDate: destinationObj.creationDate,
+    modificationDate: new Date().toISOString(),
+    creatorUser: destinationObj.creatorUser,
+    modifierUser: 'admin',
+    status: destinationObj.status,
+    idTide: destinationObj.idTide,
   };
 
   try {
     const response = await axios.put('http://localhost:9091/api/v1/destination/update', dataWithDefaults, config);
-    console.log('Datos enviados correctamente:', response.data);
+    alert(`Destino ${response.data.name} editado exitosamente!`)
+    navigate('/Destinations')
   } catch (error) {
     console.error('Error al enviar los datos:', error);
     console.log('Error al enviar los datos:', dataWithDefaults)

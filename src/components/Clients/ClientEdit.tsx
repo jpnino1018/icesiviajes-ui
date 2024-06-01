@@ -5,13 +5,12 @@ import Navbar from '../Navbar/Navbar';
 import { getAuthToken } from "../services/BackendService.tsx";
 import ServiceClient from '../services/ServiceClient';
 import { useForm, SubmitHandler } from 'react-hook-form';
-
-
-
-
+import { useNavigate } from "react-router-dom";
 
 const ClientEdit = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+
   let clientObj = location.state.clientInfo;
   const { register, handleSubmit, formState: { errors } } = useForm<any>();
 
@@ -54,10 +53,10 @@ const onSubmit: SubmitHandler<any> = async (data) => {
 
   try {
     const response = await axios.put('http://localhost:9091/api/v1/client/update', dataWithDefaults, config);
-    console.log('Datos enviados correctamente:', response.data);
+    alert(`Cliente ${response.data.name} editado exitosamente!`)
+    navigate('/Clients')
   } catch (error) {
     console.error('Error al enviar los datos:', error);
-    console.log('Error al enviar los datos:', dataWithDefaults)
   }
 };
 

@@ -4,11 +4,13 @@ import axios from 'axios';
 import Navbar from '../Navbar/Navbar';
 import { getAuthToken } from "../services/BackendService.tsx";
 import '../styles/CreateForm.css'
+import { useNavigate } from "react-router-dom";
 
 
 const ClientForm = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<any>();
-    
+    const navigate = useNavigate();
+
     const onSubmit: SubmitHandler<any> = async (data) => {
         
         const config = {
@@ -28,6 +30,7 @@ const ClientForm = () => {
           const response = await axios.post('http://localhost:9091/api/v1/client/save', dataWithDefaults, config);
           console.log('Datos enviados correctamente:', response.data);
           alert(`Cliente ${response.data.name} creado exitosamente!`)
+          navigate('/Clients')
         } catch (error) {
           console.error('Error al enviar los datos:', error);
         }
