@@ -20,13 +20,9 @@ const PlanForm = () => {
         const dataWithDefaults = {
           idPlan: -1,
           ...data,
-          creationDate: new Date().toISOString(),
-          modificationDate: '',
-          creatorUser: 'admin',
-          modifierUser: '',
           status: 'A',
           idClie: -1,
-          icUser: -1
+          idDest: -1
         };
         
     
@@ -53,12 +49,6 @@ const PlanForm = () => {
         </div>
 
         <div className='form-row'>
-            <label htmlFor="requestDescription">Descripción de la solicitud:</label>
-            <input id="requestDescription" {...register("requestDescription", { required: true })} />
-            {errors.requestDescription && <span>Este campo es obligatorio</span>}
-        </div>
-
-        <div className='form-row'>
             <label htmlFor="name">Nombre:</label>
             <input id="name" {...register("name", { required: true })} />
             {errors.name && <span>Este campo es obligatorio</span>}
@@ -68,12 +58,6 @@ const PlanForm = () => {
             <label htmlFor="personCount">Número de personas:</label>
             <input id="personCount" type="number" {...register("personCount", { required: true, min: 1 })} />
             {errors.personCount && <span>Este campo es obligatorio y debe ser al menos 1</span>}
-        </div>
-
-        <div className='form-row'>
-            <label htmlFor="requestDate">Fecha de solicitud:</label>
-            <input id="requestDate" type="date" {...register("requestDate", { required: true })} />
-            {errors.requestDate && <span>Este campo es obligatorio</span>}
         </div>
 
         <div className='form-row'>
@@ -93,10 +77,37 @@ const PlanForm = () => {
             <input id="totalValue" type="number" step="0.01" {...register("totalValue", { required: true, min: 0 })} />
             {errors.totalValue && <span>Este campo es obligatorio y debe ser un número positivo</span>}
         </div>
+
+        <div className='form-row'>
+            <label htmlFor="meal">Comida (S/N):</label>
+            <input id="meal" {...register("meal", { required: true, maxLength: 1 })} />
+            {errors.meal && <span>Este campo es obligatorio</span>}
+        </div>
+
+        <div className='form-row'>
+            <label htmlFor="transport">Transporte (S/N):</label>
+            <input id="transport" {...register("transport", { required: true , maxLength: 1})} />
+            {errors.transport && <span>Este campo es obligatorio</span>}
+        </div>
+
+        <div className='form-row'>
+            <label htmlFor="nightCount">Cantidad noches:</label>
+            <input id="nightCount" type="number" step="1" {...register("nightCount", { required: true })} />
+            {errors.nightCount && <span>Este campo es obligatorio y debe ser un número positivo</span>}
+        </div>
+
+        <div className='form-row'>
+            <label htmlFor="dayCount">Cantidad dias:</label>
+            <input id="dayCount" type="number" step="1" {...register("dayCount", { required: true })} />
+            {errors.dayCount && <span>Este campo es obligatorio y debe ser un número positivo</span>}
+        </div>
+
         <div className='btn-container'>
         <button className='send-form-btn' type="submit">Enviar</button>
         </div>
+        
         </form>
+    
       </div>
     </div>
   )

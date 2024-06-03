@@ -17,7 +17,7 @@ const DestinationForm = () => {
 
     const handleFileChange = (event) => {
       const file = event.target.files[0];
-      setValue("input_file", file);  // Actualiza el valor del input de archivo
+      setValue("input_file", file);
       
       if (file) {
         const reader = new FileReader();
@@ -43,8 +43,6 @@ const DestinationForm = () => {
         return
       }
 
-      console.log(img_reponse.secure_url)
-
       const config = {
         headers: {
             Authorization: `Bearer ${getAuthToken()}`
@@ -54,12 +52,8 @@ const DestinationForm = () => {
       const dataWithDefaults = {
         idDest: -1,
         ...data,
-        creationDate: new Date().toISOString(),
-        modificationDate: '',
-        creatorUser: 'admin',
-        modifierUser: '',
-        status: 'A',
-        idTide: -1,
+        imgUrl: img_reponse.secure_url,
+        status: 'A'
       };
 
       try {
@@ -104,23 +98,6 @@ const DestinationForm = () => {
           {errors.description && <span>Este campo es obligatorio y debe tener máximo 300 caracteres</span>}
         </div>
 
-        <div className='form-row'>
-          <label htmlFor="land">Terrestre:</label>
-          <input id="land" {...register("land", { required: true, maxLength: 1 })} />
-          {errors.land && <span>Este campo es obligatorio y debe tener máximo 1 carácter</span>}
-        </div>
-
-        <div className='form-row'>
-          <label htmlFor="air">Aéreo:</label>
-          <input id="air" {...register("air", { required: true, maxLength: 1 })} />
-          {errors.air && <span>Este campo es obligatorio y debe tener máximo 1 carácter</span>}
-        </div>
-
-        <div className='form-row'>
-          <label htmlFor="sea">Marítimo:</label>
-          <input id="sea" {...register("sea", { required: true, maxLength: 1 })} />
-          {errors.sea && <span>Este campo es obligatorio y debe tener máximo 1 carácter</span>}
-        </div>
         <div className='btn-container'>
         <button className='send-form-btn' type="submit">Enviar</button>
         </div>

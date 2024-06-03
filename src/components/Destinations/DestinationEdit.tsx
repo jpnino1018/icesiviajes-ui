@@ -19,9 +19,7 @@ const DestinationEdit = () => {
     code: destinationObj.code,
     name: destinationObj.name,
     description: destinationObj.description,
-    land: destinationObj.land,
-    air: destinationObj.air,
-    sea: destinationObj.sea
+    status: destinationObj.status
 });
 
 const handleChange = (e) => {
@@ -43,12 +41,8 @@ const onSubmit: SubmitHandler<any> = async (data) => {
   const dataWithDefaults = {
     idDest: destinationObj.idDest,
     ...data,
-    creationDate: destinationObj.creationDate,
-    modificationDate: new Date().toISOString(),
-    creatorUser: destinationObj.creatorUser,
-    modifierUser: 'admin',
-    status: destinationObj.status,
-    idTide: destinationObj.idTide,
+    imgUrl: destinationObj.imgUrl,
+
   };
 
   try {
@@ -86,22 +80,11 @@ return (
     </div>
 
     <div className='form-row'>
-      <label htmlFor="land">Terrestre:</label>
-      <input id="land" {...register("land", { required: true, maxLength: 1 })} value={formData.land} onChange={handleChange} />
-      {errors.land && <span>Este campo es obligatorio y debe tener máximo 1 carácter</span>}
+      <label htmlFor="status">Status (A/I):</label>
+      <input id="status" {...register("status", { required: true, maxLength: 1 })} value={formData.status} onChange={handleChange} />
+      {errors.status && <span>Este campo es obligatorio y debe tener máximo 1 caracteres</span>}
     </div>
 
-    <div className='form-row'>
-      <label htmlFor="air">Aéreo:</label>
-      <input id="air" {...register("air", { required: true, maxLength: 1 })} value={formData.air} onChange={handleChange} />
-      {errors.air && <span>Este campo es obligatorio y debe tener máximo 1 carácter</span>}
-    </div>
-
-    <div className='form-row'>
-      <label htmlFor="sea">Marítimo:</label>
-      <input id="sea" {...register("sea", { required: true, maxLength: 1 })} value={formData.sea} onChange={handleChange} />
-      {errors.sea && <span>Este campo es obligatorio y debe tener máximo 1 carácter</span>}
-    </div>
     <div className='btn-container'>
     <button className='send-form-btn' type="submit">Actualizar</button>
     </div>
