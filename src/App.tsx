@@ -16,11 +16,15 @@ import ClientForm from './components/Clients/ClientForm.tsx';
 import ClientEdit from './components/Clients/ClientEdit.tsx';
 import DestinationEdit from './components/Destinations/DestinationEdit.tsx';
 import PlanEdit from './components/Plans/PlanEdit.tsx';
+import Unauthorized from './components/Unauthorized/Unauthorized.tsx';
 
 export function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isSeller, setIsSeller] = useState(false);
+  const [isUser, setIsUser] = useState(false);
 
+  
   useEffect(() => {
 
     let token = getAuthToken();
@@ -28,10 +32,18 @@ export function App() {
         setIsAuthenticated(true);
         const decoded = jwtDecode<CustomJwtPayload>(token);
         console.log(decoded);
-        if (decoded.role == "ADMIN") {
+        if (decoded.role === "ADMIN") {
             setIsAdmin(true);
-        } else {
-            setIsAdmin(false);
+            setIsSeller(false)
+            setIsUser(false)
+        } else if (decoded.role === "SELLER"){
+          setIsSeller(true);
+          setIsAdmin(false);
+          setIsUser(false)
+        }else if (decoded.role === "USER"){
+          setIsUser(true);
+          setIsAdmin(false);
+          setIsSeller(false);
         }
     } else {
         setIsAuthenticated(false);
@@ -46,14 +58,15 @@ export function App() {
           <Route path='/Login' element={<Login />}/>
           <Route path='/Home' element={<Home />}/>
           <Route path='/Clients' element={<Clients />}/>
-          <Route path='/Plans' element={<Plans />}/>
+          <Route path='/Plans' element={ <Plans/>}/>
           <Route path='/Destinations' element={<Destinations />}/>
-          <Route path='/Clients/Create' element={<ClientForm/>}/>
-          <Route path='/Clients/Edit/' element={<ClientEdit />}/>
-          <Route path='/Destinations/Edit/' element={<DestinationEdit />}/>
-          <Route path='/Plans/Edit/' element={<PlanEdit />}/>
-          <Route path='/Destinations/Create' element={<DestinationForm />}/>
-          <Route path='/Plans/Create' element={<PlanForm/>}/>
+
+          <Route path='/Clients/Create' element={isSeller || isAdmin ? <ClientForm/> : <Unauthorized />}/>
+          <Route path='/Clients/Edit/' element={isSeller || isAdmin ? <ClientEdit/> : <Unauthorized />}/>
+          <Route path='/Destinations/Edit/' element={isSeller || isAdmin ? <DestinationEdit/> : <Unauthorized />}/>
+          <Route path='/Plans/Edit/' element={isSeller || isAdmin ? <PlanEdit/> : <Unauthorized />}/>
+          <Route path='/Destinations/Create' element={isSeller || isAdmin ? <DestinationForm/> : <Unauthorized />}/>
+          <Route path='/Plans/Create' element={isSeller || isAdmin ? <PlanForm/> : <Unauthorized />}/>
         </Routes>
       </Router>
     </div>
