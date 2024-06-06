@@ -23,7 +23,6 @@ const ClientForm = () => {
           idClie: -1,
           ...data,
           status: 'A',
-          idTiid: -1
         };
     
         try {
@@ -42,6 +41,17 @@ const ClientForm = () => {
       <div className='container'>
         <div className='welcome-text'>Crear Cliente</div>
         <form className='create-form' onSubmit={handleSubmit(onSubmit)}>
+          <div className='form-row'>
+              <label htmlFor="idTiid">Tipo de identificación:</label>
+              <select id="idTiid" {...register("idTiid", { required: true })}>
+              <option value="1">Cédula de Ciudadanía</option>
+              <option value="2">Tarjeta de Identidad</option>
+              <option value="3">Registro Civil</option>
+              <option value="4">Cédula de Extranjería</option>
+              </select>
+              {errors.idTiid && <span>Este campo es obligatorio</span>}
+          </div>
+          
           <div className='form-row'>
               <label htmlFor="identificationNumber">Número de Identificación:</label>
               <input id="identificationNumber" {...register("identificationNumber", { required: true })} />
