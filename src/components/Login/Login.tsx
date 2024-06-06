@@ -29,6 +29,8 @@ function Login({ setToken }: LoginProps) {
             }
         }).then(data => {
             if (data !== null) {
+                const userId = data.idUsua;
+                localStorage.setItem('userId', userId);
                 setAuthHeader(data["token"]);
                 setToken(data["token"]); // Actualizar el token
                 navigate("/Home");

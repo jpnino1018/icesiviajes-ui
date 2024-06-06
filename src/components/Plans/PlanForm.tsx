@@ -31,6 +31,7 @@ const PlanForm = () => {
           setClients(res.data)
           const res2 = await axios.get('http://localhost:9091/api/v1/destination/all', config)
           setDestiny(res2.data)
+
       }
 
       fetchPosts()
@@ -49,8 +50,11 @@ const PlanForm = () => {
           ...data,
           status: 'A',
           idClie: selectedClient,
-          idDest: selectedDestination
+          idDest: selectedDestination,
+          idUser: localStorage.getItem('userId')
         };
+
+        console.log(selectedDestination)
         
     
         try {
@@ -64,6 +68,8 @@ const PlanForm = () => {
     
       const handleClientChange = (event) => {
         setSelectedClient(event.target.value);
+        
+
       };
       
       const handleDestinationChange = (event) => {
@@ -79,74 +85,76 @@ const PlanForm = () => {
       <div className='welcome-text' id='clients-text'>Crear Plan</div>
         <form className='create-form' onSubmit={handleSubmit(onSubmit)}>
           
-        <div className='form-row' style={{height: 'auto'}}>
-            <input id="code" {...register("code", { required: true })} placeholder='Codigo' className='inputs'/>
-            {errors.code && <span>Este campo es obligatorio</span>}
+          <div className='form-row' style={{height: 'auto'}}>
+              <input id="code" {...register("code", { required: true })} placeholder='Codigo' className='inputs'/>
+              {errors.code && <span>Este campo es obligatorio</span>}
 
-            <input id="name" {...register("name", { required: true })} placeholder='Nombre' />
-            {errors.name && <span>Este campo es obligatorio</span>}
-        </div>
+              <input id="name" {...register("name", { required: true })} placeholder='Nombre' />
+              {errors.name && <span>Este campo es obligatorio</span>}
+          </div>
 
-        <div className='form-row'>
-            <input id="personCount" type="number" {...register("personCount", { required: true, min: 1 })} placeholder='Número de personas' className='inputs' style={{width: '100%'}}/>
-            {errors.personCount && <span>Este campo es obligatorio y debe ser al menos 1</span>}
-        </div>
+          <div className='form-row'>
+              <input id="personCount" type="number" {...register("personCount", { required: true, min: 1 })} placeholder='Número de personas' className='inputs' style={{width: '100%'}}/>
+              {errors.personCount && <span>Este campo es obligatorio y debe ser al menos 1</span>}
+          </div>
 
-        <div className='form-row'>
-            <label htmlFor="startTravelDate">Fecha de inicio del viaje:</label>
-            <input id="startTravelDate" type="date" {...register("startTravelDate", { required: true })} />
-            {errors.startTravelDate && <span>Este campo es obligatorio</span>}
-        </div>
+          <div className='form-row'>
+              <label htmlFor="startTravelDate">Fecha de inicio del viaje:</label>
+              <input id="startTravelDate" type="date" {...register("startTravelDate", { required: true })} />
+              {errors.startTravelDate && <span>Este campo es obligatorio</span>}
+          </div>
 
-        <div className='form-row'>
-            <label htmlFor="endTravelDate">Fecha de fin del viaje:</label>
-            <input id="endTravelDate" type="date" {...register("endTravelDate", { required: true })} />
-            {errors.endTravelDate && <span>Este campo es obligatorio</span>}
-        </div>
+          <div className='form-row'>
+              <label htmlFor="endTravelDate">Fecha de fin del viaje:</label>
+              <input id="endTravelDate" type="date" {...register("endTravelDate", { required: true })} />
+              {errors.endTravelDate && <span>Este campo es obligatorio</span>}
+          </div>
 
-        <div className='form-row'>
-            <input id="meal" {...register("meal", { required: true, maxLength: 1 })} placeholder='Comida' className='inputs'/>
-            {errors.meal && <span>Este campo es obligatorio</span>}
+          <div className='form-row'>
+              <input id="meal" {...register("meal", { required: true, maxLength: 1 })} placeholder='Comida' className='inputs'/>
+              {errors.meal && <span>Este campo es obligatorio</span>}
 
-            <input id="transport" {...register("transport", { required: true , maxLength: 1})} placeholder='Transporte'className='inputs'/>
-            {errors.transport && <span>Este campo es obligatorio</span>}
-        </div>
+              <input id="transport" {...register("transport", { required: true , maxLength: 1})} placeholder='Transporte'className='inputs'/>
+              {errors.transport && <span>Este campo es obligatorio</span>}
+          </div>
 
-        <div className='form-row'>
-            <input id="nightCount" type="number" step="1" {...register("nightCount", { required: true })} placeholder='Cantidad de noches' className='inputs'/>
-            {errors.nightCount && <span>Este campo es obligatorio y debe ser un número positivo</span>}
-        
-            <input id="dayCount" type="number" step="1" {...register("dayCount", { required: true })} placeholder='Cantidad de dias'className='inputs'/>
-            {errors.dayCount && <span>Este campo es obligatorio y debe ser un número positivo</span>}
-        </div>
+          <div className='form-row'>
+              <input id="nightCount" type="number" step="1" {...register("nightCount", { required: true })} placeholder='Cantidad de noches' className='inputs'/>
+              {errors.nightCount && <span>Este campo es obligatorio y debe ser un número positivo</span>}
+          
+              <input id="dayCount" type="number" step="1" {...register("dayCount", { required: true })} placeholder='Cantidad de dias'className='inputs'/>
+              {errors.dayCount && <span>Este campo es obligatorio y debe ser un número positivo</span>}
+          </div>
 
-        <div className='form-row'>
-            <input id="totalValue" type="number" step="0.01" {...register("totalValue", { required: true, min: 0 })} placeholder='Valor Total'className='inputs'style={{width: '100%'}}/>
-            {errors.totalValue && <span>Este campo es obligatorio y debe ser un número positivo</span>}
-        </div>
-        <div className='form-row'>
-          <select className='clientes' onChange={handleClientChange} value={selectedClient} style={{width: '100%'}}>
-            {Clients.map(client => (
-              <option key={client.idClie} value={client.idClie}>{client.name}</option>
-            ))}
-        </select>
-        {errors.totalValue && <span>Este campo es obligatorio y debe ser un número positivo</span>}
-        </div>
-
-        <div className='form-row'>
-          <select className='destinys' onChange={handleDestinationChange} value={selectedDestination} style={{width: '100%'}}>
-            {Destiny.map(destination => (
-              <option key={destination.id} value={destination.id}>{destination.name}</option>
-            ))}
+          <div className='form-row'>
+              <input id="totalValue" type="number" step="0.01" {...register("totalValue", { required: true, min: 0 })} placeholder='Valor Total'className='inputs'style={{width: '100%'}}/>
+              {errors.totalValue && <span>Este campo es obligatorio y debe ser un número positivo</span>}
+          </div>
+          <div className='form-row'>
+            <select className='clientes' onChange={handleClientChange} value={selectedClient} style={{width: '100%'}}>
+            <option value="">Selecciona un Cliente</option>
+              {Clients.map(client => (
+                <option key={client.idClie} value={client.idClie}>{client.name}</option>
+              ))}
           </select>
-            {errors.totalValue && <span>Este campo es obligatorio y debe ser un número positivo</span>}
-        </div>
+          {errors.totalValue && <span>Este campo es obligatorio y debe ser un número positivo</span>}
+          </div>
 
-        <div className='btn-container'>
-        <button className='send-form-btn' type="submit">Enviar</button>
-        </div>
-        
-        </form>
+          <div className='form-row'>
+            <select className='destinys' onChange={handleDestinationChange} value={selectedDestination} style={{width: '100%'}}>
+            <option value="">Selecciona un destino</option>
+              {Destiny.map(destination => (
+                <option key={destination.idDest} value={destination.idDest}> {destination.name}</option>
+              ))}
+            </select>
+              {errors.totalValue && <span>Este campo es obligatorio y debe ser un número positivo</span>}
+          </div>
+
+          <div className='btn-container'>
+          <button className='send-form-btn' type="submit">Enviar</button>
+          </div>
+          
+        </form> 
     
       </div>
     </div>

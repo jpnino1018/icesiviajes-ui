@@ -60,6 +60,25 @@ const onSubmit: SubmitHandler<any> = async (data) => {
   }
 };
 
+const handleDelete = async (idPost) => {
+  const config = {
+    headers: {
+        Authorization: `Bearer ${getAuthToken()}`
+    }
+  }
+  
+  try {
+
+      const response = await axios.delete(`http://localhost:9091/api/v1/client/delete/${idPost}`, config);
+
+      alert(`Cliente eliminado exitosamente`);
+      navigate('/Clients')
+
+  } catch (error) {
+      console.error('Ocurrió un problema con la eliminación:', error);
+  }
+};
+
   return (
     <div className='page'>
       <Navbar />
@@ -103,9 +122,12 @@ const onSubmit: SubmitHandler<any> = async (data) => {
               </select>
               
           </div>
+          
           <div className='btn-container'>
             <button className='send-form-btn' type="submit">Actualizar</button>
+            <svg className='deleteBtn'style={{ margin: '1.5rem 2vh' }} onClick={() => handleDelete(clientObj.idClie)} xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="30px" fill="#e8eaed"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>
           </div>
+    
         </form>
       </div>
     </div>
