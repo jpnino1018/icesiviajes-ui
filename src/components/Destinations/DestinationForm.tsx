@@ -76,7 +76,7 @@ const DestinationForm = () => {
 
         {imagePreview && (
         <div className='image-preview'>
-          <img src={imagePreview} alt="Vista previa" />
+          <img className='img-preview' src={imagePreview} alt="Vista previa" />
         </div>
         )}
 

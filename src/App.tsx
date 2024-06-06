@@ -16,6 +16,7 @@ import ClientForm from './components/Clients/ClientForm.tsx';
 import ClientEdit from './components/Clients/ClientEdit.tsx';
 import DestinationEdit from './components/Destinations/DestinationEdit.tsx';
 import PlanEdit from './components/Plans/PlanEdit.tsx';
+import View from './components/Common/View.tsx';
 
 export function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -54,6 +55,9 @@ export function App() {
           <Route path='/Plans/Edit/' element={<PlanEdit />}/>
           <Route path='/Destinations/Create' element={<DestinationForm />}/>
           <Route path='/Plans/Create' element={<PlanForm/>}/>
+          <Route path='/Client/View' element={<View/>}/>
+          <Route path='/Plan/View' element={<View/>}/>
+          <Route path='/Destination/View' element={<View/>}/>
         </Routes>
       </Router>
     </div>
