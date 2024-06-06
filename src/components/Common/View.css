@@ -1,0 +1,43 @@
+.info-box {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 5pt 0.5pt dimgray;
+    border-radius: 12px;
+    padding: 10px;
+    background-color:lightgray;
+    margin: 10px 0;
+    width: 80%;
+}
+
+.editView {
+    height: 100%;
+    color: #FFF;
+    background-color: black;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+}
+.editView:hover {
+    background-color: #FFF;
+    fill: black;
+}
+
+.view-row {
+    display: flex;
+    flex-direction: row;
+    margin: 0 100px;
+}
+
+.view-tag {
+    font-weight: 800;
+    color: #007FDA;
+}
+
+p {
+    width: 400px;
+    max-height: 150px   ;
+    overflow-y: auto;
+}

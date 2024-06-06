@@ -17,6 +17,7 @@ import ClientEdit from './components/Clients/ClientEdit.tsx';
 import DestinationEdit from './components/Destinations/DestinationEdit.tsx';
 import PlanEdit from './components/Plans/PlanEdit.tsx';
 import Unauthorized from './components/Unauthorized/Unauthorized.tsx';
+import View from './components/Common/View.tsx';
 
 export function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -52,12 +53,16 @@ export function App() {
     <div>
       <Router>
         <Routes>
-          <Route path='/' element={isAuthenticated ? <Home /> : <Login setToken={setToken} />} />
+        <Route path='/' element={isAuthenticated ? <Home /> : <Login setToken={setToken} />} />
           <Route path='/Login' element={<Login setToken={setToken} />} />
           <Route path='/Home' element={<Home />} />
           <Route path='/Clients' element={<Clients />} />
           <Route path='/Plans' element={<Plans />} />
           <Route path='/Destinations' element={<Destinations />} />
+          <Route path='/Client/View' element={<View />} />
+          <Route path='/Plan/View' element={<View />} />
+          <Route path='/Destination/View' element={<View />} />
+          
 
           <Route path='/Clients/Create' element={isSeller || isAdmin ? <ClientForm /> : <Unauthorized />} />
           <Route path='/Clients/Edit/' element={isSeller || isAdmin ? <ClientEdit /> : <Unauthorized />} />
