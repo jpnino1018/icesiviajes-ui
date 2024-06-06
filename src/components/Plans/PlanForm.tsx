@@ -50,7 +50,8 @@ const PlanForm = () => {
           ...data,
           status: 'A',
           idClie: selectedClient,
-          idDest: selectedDestination
+          idDest: selectedDestination,
+          idUser: localStorage.getItem('userId')
         };
 
         console.log(selectedDestination)
@@ -66,15 +67,13 @@ const PlanForm = () => {
       };
     
       const handleClientChange = (event) => {
-        console.log(event.target.value)
         setSelectedClient(event.target.value);
-        console.log(setSelectedClient)
+        
 
       };
       
       const handleDestinationChange = (event) => {
         setSelectedDestination(event.target.value);
-        console.log(setSelectedDestination)
       };
 
 
@@ -145,7 +144,7 @@ const PlanForm = () => {
             <select className='destinys' onChange={handleDestinationChange} value={selectedDestination} style={{width: '100%'}}>
             <option value="">Selecciona un destino</option>
               {Destiny.map(destination => (
-                <option key={destination.id} value={destination.id}>{destination.name}</option>
+                <option key={destination.idDest} value={destination.idDest}> {destination.name}</option>
               ))}
             </select>
               {errors.totalValue && <span>Este campo es obligatorio y debe ser un número positivo</span>}
